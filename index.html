@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mackinac Shack</title>
 
-<!-- Google Fonts similar to Nobu/Momofuku -->
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto&display=swap" rel="stylesheet">
 
 <!-- Font Awesome for icons -->
@@ -14,33 +14,33 @@
 <style>
 /* ===== Reset & Body ===== */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Roboto', sans-serif; color: #333; display: flex; }
+body { font-family: 'Roboto', sans-serif; color: #333; overflow-x: hidden; }
 
-/* ===== Sidebar ===== */
+/* ===== Hamburger & Sidebar ===== */
+#hamburger {
+    position: fixed; top: 20px; left: 20px;
+    font-size: 1.8rem; cursor: pointer;
+    z-index: 2000; color: #111;
+}
 .sidebar {
-    width: 220px;
-    background: #111;
-    color: #fff;
-    height: 100vh;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
+    position: fixed; top: 0; left: -260px; width: 250px; height: 100vh;
+    background: #111; color: #fff; padding: 20px; flex-direction: column;
+    transition: left 0.4s ease;
+    display: flex; justify-content: space-between; z-index: 1500;
 }
+.sidebar.open { left: 0; }
 .sidebar h1 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 30px; }
-.sidebar nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 15px 0;
-    display: block;
-    transition: color 0.3s;
-}
+.sidebar nav a { color: #fff; text-decoration: none; margin: 15px 0; display: block; transition: color 0.3s; }
 .sidebar nav a.active, .sidebar nav a:hover { color: #ff6600; }
+.sidebar .social-links { display: flex; gap: 15px; }
+.sidebar .social-links a { color: #fff; font-size: 1.5rem; transition: color 0.3s; }
+.sidebar .social-links a:hover { color: #ff6600; }
 
 /* ===== Main content ===== */
-.main { margin-left: 220px; width: calc(100% - 220px); overflow-x: hidden; }
+.main { margin-left: 0; transition: margin-left 0.4s ease; }
 section { padding: 80px 40px; transition: all 0.5s ease-in-out; }
+section:nth-child(odd) { background: #f8f8f8; }
+section:nth-child(even) { background: #fff7f0; }
 
 /* ===== Hero Slider ===== */
 .slider { position: relative; width: 100%; height: 80vh; overflow: hidden; }
@@ -53,18 +53,17 @@ section { padding: 80px 40px; transition: all 0.5s ease-in-out; }
     display: flex; gap: 20px;
 }
 .slider-buttons a {
-    background: rgba(0,0,0,0.6);
+    background: linear-gradient(45deg, #ff6600, #ff9966);
     color: #fff; padding: 12px 20px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 4px;
+    text-decoration: none; font-weight: bold; border-radius: 4px;
     transition: 0.3s;
 }
-.slider-buttons a:hover { background: #ff6600; }
+.slider-buttons a:hover { transform: scale(1.05); }
 
 /* ===== Menu Cards ===== */
 .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-.menu-card { background: #f8f8f8; padding: 15px; border-radius: 8px; cursor: pointer; position: relative; overflow: hidden; }
+.menu-card { background: #fff0e6; padding: 15px; border-radius: 10px; cursor: pointer; position: relative; overflow: hidden; transition: transform 0.3s; }
+.menu-card:hover { transform: translateY(-5px); }
 .menu-card img { width: 100%; border-radius: 6px; margin-bottom: 10px; }
 .menu-card h3 { font-family: 'Playfair Display', serif; margin-bottom: 8px; }
 .menu-card p { margin-bottom: 6px; }
@@ -77,18 +76,21 @@ section { padding: 80px 40px; transition: all 0.5s ease-in-out; }
 .modal-content p { margin-bottom: 5px; }
 .close-modal { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; cursor: pointer; }
 
-/* ===== Footer ===== */
-footer { background: #222; color: #fff; text-align: center; padding: 30px 0; margin-top: 40px; }
-
 /* ===== Scroll Animation ===== */
 .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== Footer ===== */
+footer { background: #222; color: #fff; text-align: center; padding: 30px 0; margin-top: 40px; }
 </style>
 </head>
 
 <body>
+<!-- Hamburger -->
+<div id="hamburger"><i class="fas fa-bars"></i></div>
+
 <!-- Sidebar -->
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
     <div>
         <h1>Mackinac Shack</h1>
         <nav>
@@ -103,7 +105,7 @@ footer { background: #222; color: #fff; text-align: center; padding: 30px 0; mar
             <a href="#experiences">Experiences</a>
         </nav>
     </div>
-    <div>
+    <div class="social-links">
         <a href="#"><i class="fab fa-twitter"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -127,7 +129,7 @@ footer { background: #222; color: #fff; text-align: center; padding: 30px 0; mar
     <!-- Sections -->
     <section id="locations" class="fade-in">
         <h2>Locations</h2>
-        <p>Check out our locations across the area and find the closest Mackinac Shack to you.</p>
+        <p>Find our locations across the region with easy access to your favorite dishes.</p>
     </section>
 
     <section id="menu" class="fade-in">
@@ -143,17 +145,22 @@ footer { background: #222; color: #fff; text-align: center; padding: 30px 0; mar
                 <h3>Truffle Pasta</h3>
                 <p>$22</p>
             </div>
+            <div class="menu-card" data-name="Seafood Platter" data-desc="Assorted fresh seafood" data-price="$30" data-img="https://source.unsplash.com/400x300/?seafood">
+                <img src="https://source.unsplash.com/400x300/?seafood" alt="">
+                <h3>Seafood Platter</h3>
+                <p>$30</p>
+            </div>
         </div>
     </section>
 
     <section id="about" class="fade-in">
         <h2>Who We Are</h2>
-        <p>Mackinac Shack is all about bold flavors and unforgettable experiences. We combine trendiness with comfort food in a modern setting.</p>
+        <p>Mackinac Shack combines bold flavors, trendy dining, and unforgettable experiences for every guest.</p>
     </section>
 
     <section id="instagram" class="fade-in">
         <h2>Instagram</h2>
-        <p>Follow us for mouthwatering photos and behind-the-scenes content!</p>
+        <p>Follow us for mouthwatering photos and behind-the-scenes moments!</p>
     </section>
 
     <section id="catering" class="fade-in">
@@ -198,7 +205,12 @@ footer { background: #222; color: #fff; text-align: center; padding: 30px 0; mar
 </div>
 
 <script>
-/* ===== Slider ===== */
+/* ===== Hamburger Toggle ===== */
+const hamburger = document.getElementById('hamburger');
+const sidebar = document.getElementById('sidebar');
+hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
+
+/* ===== Hero Slider ===== */
 let slides = document.querySelectorAll('.slide');
 let currentSlide = 0;
 setInterval(() => {
