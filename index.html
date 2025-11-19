@@ -20,12 +20,12 @@ body { font-family: 'Roboto', sans-serif; color: #222; overflow-x: hidden; }
 .navbar {
     width: 100%; position: fixed; top: 0; left: 0; z-index: 1000;
     background: rgba(255,255,255,0.95); display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 40px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 20px 40px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: background 0.3s;
 }
-.navbar h1 { font-family: 'Playfair Display', serif; font-size: 1.8rem; }
+.navbar h1 { font-family: 'Playfair Display', serif; font-size: 1.8rem; text-transform: lowercase; letter-spacing: 1px; font-weight:700; }
 .nav-links { display: flex; gap: 25px; }
 .nav-links a { text-decoration: none; color: #222; font-weight: 500; transition: 0.3s; }
-.nav-links a:hover { color: #ff6600; }
+.nav-links a:hover, .nav-links a.active { color: #ff6600; }
 
 /* Hamburger for mobile */
 #hamburger { display: none; font-size: 1.8rem; cursor: pointer; }
@@ -55,7 +55,7 @@ body { font-family: 'Roboto', sans-serif; color: #222; overflow-x: hidden; }
     width: 100%; height: 100%; position: absolute; top: 0; left: 100%;
     opacity: 0; transition: all 1s ease; background-size: cover; background-position: center;
 }
-.slide.active { left: 0; opacity: 1; }
+.slide.active { left: 0; opacity: 1; transform: scale(1.05); transition: all 1s ease; }
 .hero-overlay {
     position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.25);
 }
@@ -71,24 +71,24 @@ body { font-family: 'Roboto', sans-serif; color: #222; overflow-x: hidden; }
 .hero-buttons a:hover { transform: scale(1.05); }
 
 /* ===== Sections ===== */
-section { padding: 100px 50px; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
+section { padding: 100px 50px; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; transition: background 0.5s ease; }
 section h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px; color: #222; }
 section p { font-size: 1rem; margin-bottom: 20px; line-height: 1.6; }
-section:nth-child(even) { background:#fff7f0; }
-section:nth-child(odd) { background:#f8f8f8; }
+section img { width: 100%; border-radius:10px; margin-top:20px; object-fit:cover; }
 
 /* ===== Menu Cards ===== */
 .menu-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:25px; }
-.menu-card { background:#fff0e6; border-radius:10px; overflow:hidden; cursor:pointer; transition: transform 0.3s; }
-.menu-card:hover { transform: translateY(-5px); }
-.menu-card img { width:100%; height:200px; object-fit:cover; }
+.menu-card { background:#fff0e6; border-radius:10px; overflow:hidden; cursor:pointer; position: relative; transition: transform 0.3s; }
+.menu-card:hover { transform: scale(1.03); }
+.menu-card img { width:100%; height:200px; object-fit:cover; transition:0.5s; }
+.menu-card:hover img { filter: brightness(80%); }
 .menu-card h3 { font-family:'Playfair Display', serif; margin:10px 15px 5px; }
 .menu-card p { margin:0 15px 10px; font-weight:500; }
 
 /* ===== Modal ===== */
 .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:2000; }
 .modal-content { background:#fff; max-width:600px; border-radius:10px; padding:20px; position:relative; }
-.modal-content img { width:100%; margin-bottom:15px; }
+.modal-content img { width:100%; margin-bottom:15px; border-radius:10px; }
 .modal-content h3 { font-family:'Playfair Display', serif; margin-bottom:10px; }
 .modal-content p { margin-bottom:5px; }
 .close-modal { position:absolute; top:10px; right:15px; font-size:1.5rem; cursor:pointer; }
@@ -111,7 +111,7 @@ footer { background:#222; color:#fff; text-align:center; padding:50px 20px; marg
 
 <!-- Navbar -->
 <div class="navbar">
-    <h1>Mackinac Shack</h1>
+    <h1>mackinac shack</h1>
     <div class="nav-links">
         <a href="#locations">Locations</a>
         <a href="#menu">Menu</a>
@@ -160,13 +160,13 @@ footer { background:#222; color:#fff; text-align:center; padding:50px 20px; marg
 </div>
 
 <!-- Sections -->
-<section id="locations" class="fade-in">
+<section id="locations" class="fade-in" style="background:#fff7f0;">
     <h2>Locations</h2>
     <p>Find our locations across the region with easy access to your favorite dishes.</p>
-    <img src="https://source.unsplash.com/1200x600/?restaurant,exterior" style="width:100%;border-radius:10px;margin-top:20px;">
+    <img src="https://source.unsplash.com/1200x600/?restaurant,exterior">
 </section>
 
-<section id="menu" class="fade-in">
+<section id="menu" class="fade-in" style="background:#f8f8f8;">
     <h2>Menu</h2>
     <div class="menu-grid">
         <div class="menu-card" data-name="Signature Burger" data-desc="Juicy beef with gourmet toppings" data-price="$15" data-img="https://source.unsplash.com/400x300/?burger">
@@ -187,39 +187,39 @@ footer { background:#222; color:#fff; text-align:center; padding:50px 20px; marg
     </div>
 </section>
 
-<section id="about" class="fade-in">
+<section id="about" class="fade-in" style="background:#fff7f0;">
     <h2>Who We Are</h2>
     <p>Mackinac Shack combines bold flavors, trendy dining, and unforgettable experiences for every guest.</p>
-    <img src="https://source.unsplash.com/1200x600/?kitchen,chef" style="width:100%;border-radius:10px;margin-top:20px;">
+    <img src="https://source.unsplash.com/1200x600/?kitchen,chef">
 </section>
 
-<section id="instagram" class="fade-in">
+<section id="instagram" class="fade-in" style="background:#f8f8f8;">
     <h2>Instagram</h2>
     <p>Follow us for mouthwatering photos and behind-the-scenes moments!</p>
-    <img src="https://source.unsplash.com/1200x600/?food,instagram" style="width:100%;border-radius:10px;margin-top:20px;">
+    <img src="https://source.unsplash.com/1200x600/?food,instagram">
 </section>
 
-<section id="catering" class="fade-in">
+<section id="catering" class="fade-in" style="background:#fff7f0;">
     <h2>Catering</h2>
     <p>We cater events big and small. Let Mackinac Shack bring our bold flavors to your event.</p>
 </section>
 
-<section id="contact" class="fade-in">
+<section id="contact" class="fade-in" style="background:#f8f8f8;">
     <h2>Contact</h2>
     <p>Email: info@mackinacshack.com | Phone: (123) 456-7890</p>
 </section>
 
-<section id="orders" class="fade-in">
+<section id="orders" class="fade-in" style="background:#fff7f0;">
     <h2>Online Orders</h2>
     <p>Order your favorites directly from our website and enjoy Mackinac Shack at home.</p>
 </section>
 
-<section id="reservations" class="fade-in">
+<section id="reservations" class="fade-in" style="background:#f8f8f8;">
     <h2>Reservations</h2>
     <p>Book your table online or call us directly for a reservation.</p>
 </section>
 
-<section id="experiences" class="fade-in">
+<section id="experiences" class="fade-in" style="background:#fff7f0;">
     <h2>Experiences</h2>
     <p>Join us for special events and culinary experiences that excite your senses.</p>
 </section>
@@ -285,6 +285,5 @@ menuCards.forEach(card => {
 closeModal.addEventListener('click', () => modal.style.display = 'none');
 window.addEventListener('click', e => { if(e.target == modal) modal.style.display='none'; });
 </script>
-
 </body>
 </html>
