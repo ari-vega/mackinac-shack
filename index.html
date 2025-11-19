@@ -1,84 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Restaurant Name</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Roboto&display=swap" rel="stylesheet">
-    <style>
-        /* Reset and body styling */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Roboto', sans-serif; color: #333; line-height: 1.6; display: flex; min-height: 100vh; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mackinac Shack</title>
 
-        /* Sidebar styling */
-        .sidebar {
-            width: 250px;
-            background: #222;
-            color: #fff;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .sidebar h1 { font-family: 'Playfair Display', serif; margin-bottom: 20px; }
-        .sidebar a { color: #fff; text-decoration: none; margin: 10px 0; transition: 0.3s; }
-        .sidebar a:hover { color: #f4a261; }
+<!-- Google Fonts similar to Nobu/Momofuku -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto&display=swap" rel="stylesheet">
 
-        /* Main content */
-        .main { flex: 1; padding: 40px; background: #f8f8f8; }
-        .main h2 { font-family: 'Playfair Display', serif; font-size: 2em; margin-bottom: 20px; }
-        .main p { margin-bottom: 20px; }
+<!-- Font Awesome for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-        /* Social links at bottom of sidebar */
-        .social-links { display: flex; gap: 15px; margin-top: 20px; }
-        .social-links a { color: #fff; font-size: 1.5em; transition: 0.3s; }
-        .social-links a:hover { color: #f4a261; }
+<style>
+/* ===== Reset & Body ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Roboto', sans-serif; color: #333; display: flex; }
 
-        /* Example footer */
-        footer { text-align: center; margin-top: 40px; color: #666; }
-    </style>
-</head>
-<body>
-    <div class="sidebar">
-        <div>
-            <h1>Your Restaurant</h1>
-            <nav>
-                <a href="#about">About</a>
-                <a href="#menu">Menu</a>
-                <a href="#contact">Contact</a>
-                <a href="#reservations">Reservations</a>
-            </nav>
-        </div>
-        <div class="social-links">
-            <a href="#" target="_blank">🐦</a>
-            <a href="#" target="_blank">📸</a>
-            <a href="#" target="_blank">👍</a>
-        </div>
-    </div>
-    <div class="main">
-        <section id="about">
-            <h2>About Us</h2>
-            <p>Welcome to Your Restaurant! We serve gourmet dishes with fresh ingredients and a cozy atmosphere. Experience fine dining with a touch of comfort.</p>
-        </section>
-
-        <section id="menu">
-            <h2>Menu Highlights</h2>
-            <p>Try our signature dishes, from mouthwatering appetizers to delectable desserts. Our menu combines modern cuisine with classic flavors.</p>
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Email: info@yourrestaurant.com | Phone: (123) 456-7890</p>
-        </section>
-
-        <section id="reservations">
-            <h2>Reservations</h2>
-            <p>Book your table online or call us directly. We look forward to serving you!</p>
-        </section>
-
-        <footer>
-            &copy; 2025 Your Restaurant. All rights reserved.
-        </footer>
-    </div>
-</body>
-</html>
+/* ===== Sidebar ===== */
+.sidebar {
+    width: 220px;
+    background: #111;
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
